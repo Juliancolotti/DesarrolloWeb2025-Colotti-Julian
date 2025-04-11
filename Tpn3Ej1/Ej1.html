@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestión de Productos - Monolítica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    input, button {
+      margin: 5px;
+      padding: 8px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    .delete-btn {
+      margin-left: 10px;
+      color: red;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gestión de Productos</h1>
+
+  <input type="text" id="productInput" placeholder="Nombre del producto" />
+  <button onclick="agregarProducto()">Agregar</button>
+
+  <h2>Lista de productos:</h2>
+  <ul id="productList"></ul>
+
+  <script>
+    const productos = [];
+
+    function agregarProducto() {
+      const input = document.getElementById('productInput');
+      const nombre = input.value.trim();
+      if (nombre) {
+        productos.push(nombre);
+        input.value = '';
+        mostrarProductos();
+      }
+    }
+
+    function eliminarProducto(index) {
+      productos.splice(index, 1);
+      mostrarProductos();
+    }
+
+    function mostrarProductos() {
+      const lista = document.getElementById('productList');
+      lista.innerHTML = '';
+      productos.forEach((producto, index) => {
+        const li = document.createElement('li');
+        li.textContent = producto;
+        const btn = document.createElement('span');
+        btn.textContent = 'Eliminar';
+        btn.className = 'delete-btn';
+        btn.onclick = () => eliminarProducto(index);
+        li.appendChild(btn);
+        lista.appendChild(li);
+      });
+    }
+  </script>
+
+  <!-- 
+    Esta implementación es monolítica porque todo el código de presentación (HTML),
+    estilos (CSS) y lógica de negocio (JavaScript) están juntos en un mismo archivo.
+    
+    Desventajas de esta estructura:
+    - Difícil de escalar o mantener a medida que el proyecto crece.
+    - No hay una clara separación de responsabilidades.
+    - El código se vuelve confuso y difícil de testear o reutilizar.
+  -->
+
+</body>
+</html>

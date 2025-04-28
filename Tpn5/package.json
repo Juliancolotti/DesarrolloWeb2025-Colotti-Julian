@@ -1,0 +1,14 @@
+{
+    "name": "api-rest-productos",
+    "version": "1.0.0",
+    "description": "API REST de gestión de productos (3 capas)",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2"
+    }
+  }
+  
